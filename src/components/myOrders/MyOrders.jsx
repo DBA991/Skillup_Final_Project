@@ -1,62 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
+import OrderDetails from "./OrderDetails";
 
-function MyOrders () {
-  const arr = [
-    {
-      idNumber: "#36784627642738927",
-      state: "Processing",
-      quantity: "56",
-      amount: "456456",
-      payment: "COD",
-      link: (
-        <Link to={`/order/${"asdsds"}`}>
-          {" "}
-          <AiOutlineEye />{" "}
-        </Link>
-      ),
-    },
-    {
-      idNumber: "#73946349858937",
-      state: "Processed",
-      quantity: "23",
-      amount: "45646",
-      payment: "PP",
-      link: (
-        <Link to={`/order/${"asdsds"}`}>
-          {" "}
-          <AiOutlineEye />{" "}
-        </Link>
-      ),
-    },
-    {
-      idNumber: "#738272074237237",
-      state: "Sent",
-      quantity: "3",
-      amount: "456446",
-      payment: "COD",
-      link: (
-        <Link to={`/order/${"asdsds"}`}>
-          {" "}
-          <AiOutlineEye />{" "}
-        </Link>
-      ),
-    },
-    {
-      idNumber: "85727623947923",
-      state: "Completed",
-      quantity: "11",
-      amount: "45646",
-      payment: "COD",
-      link: (
-        <Link to={`/order/${"asdsds"}`}>
-          {" "}
-          <AiOutlineEye />{" "}
-        </Link>
-      ),
-    },
-  ];
+function MyOrders({ arr, isAuth }) {
+  if (!isAuth) {
+    return (
+    <p>no orders!</p>)
+  }
 
   return (
     <section className="tableClass">
@@ -74,21 +25,33 @@ function MyOrders () {
           </thead>
           <tbody>
             {arr.map((i, index) => (
-              <tr key={index + i.idNumber}>
-                <td>{i.idNumber}</td>
-                <td>{i.state}</td>
-                <td>{i.quantity}</td>
-                <td>₹ {i.amount}</td>
-                <td>{i.payment}</td>
-                <td>{i.link}</td>
+              <tr key={index + i.id}>
+                <td>{i.id}</td>
+                <td>{i.oStatus}</td>
+                <td>{i.item1 + i.item2 + i.item3}</td>
+                <td>
+                  ₹
+                  {i.item1 * 200 +
+                    i.item2 * 500 +
+                    i.item3 * 1800 +
+                    (i.item1 * 200 + i.item2 * 500 + i.item3 * 1800) * 0.18 +
+                    200}
+                </td>
+                <td>{i.pMeth}</td>
+                <td>
+                  {" "}
+                  <Link to={{ pathname: `/order/${i.id}` }}>
+                    {" "}
+                    <AiOutlineEye />{" "}
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
-          ;
         </table>
       </main>
     </section>
   );
-};
+}
 
 export default MyOrders;

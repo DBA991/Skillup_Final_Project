@@ -1,5 +1,8 @@
 import React from "react";
-function OrderDetails () {
+function OrderDetails({ arr, isAuth }) {
+  if (!isAuth) {
+    return <p>no orders!</p>;
+  }
   return (
     <section className="orderDetails">
       <main>
@@ -8,62 +11,69 @@ function OrderDetails () {
           <h1>Shipping</h1>
           <p>
             <b>Address</b>
-            {"sjda 12-32ss dsad"}
+            {arr.address}
           </p>
         </div>
         <div>
           <h1>Contact</h1>
           <p>
             <b>Name</b>
-            {"Stuart"}
+            {arr.name}
           </p>
           <p>
             <b>Phone</b>
-            {2131232123}
+            {arr.phone}
           </p>
         </div>
         <div>
           <h1>Status</h1>
           <p>
             <b>Order Status</b>
-            {"Processing"}
+            {arr.oStatus}
           </p>
           <p>
             <b>Placed At</b>
-            {"23-02-2002"}
+            {arr.pAt}
           </p>
           <p>
             <b>Delivered At</b>
-            {"23-02-2003"}
+            {arr.dAt}
           </p>
         </div>
         <div>
           <h1>Payment</h1>
           <p>
             <b>Payment Method</b>
-            {"COD"}
+            {arr.pMeth}
           </p>
           <p>
-            <b>Payment Reference</b>#{"asdasdsadsad"}
+            <b>Payment Reference</b>#{arr.id}
           </p>
           <p>
             <b>Paid At</b>
-            {"23-02-2003"}
+            {arr.payAt}
           </p>
         </div>
         <div>
           <h1>Amount</h1>
           <p>
-            <b>Items Total</b>₹{2132}
+            <b>Items Total</b>₹{" "}
+            {arr.item1 * 200 + arr.item2 * 500 + arr.item3 * 1800}
           </p>
           <p>
             <b>Shipping Charges</b>₹{200}
           </p>
           <p>
-            <b>Tax</b>₹{232}
+            <b>Tax</b>₹
+            {(arr.item1 * 200 + arr.item2 * 500 + arr.item3 * 1800) * 0.18}
           </p>
           <p>
-            <b>Total Amount</b>₹{232 + 200 + 2132}
+            <b>Total Amount</b>₹
+            {arr.item1 * 200 +
+              arr.item2 * 500 +
+              arr.item3 * 1800 +
+              (arr.item1 * 200 + arr.item2 * 500 + arr.item3 * 1800) * 0.18 +
+              200}
           </p>
         </div>
         <article>
@@ -71,28 +81,33 @@ function OrderDetails () {
           <div>
             <h4>Cheese Burger</h4>
             <div>
-              <span>{12}</span> x <span>{232}</span>
+              <span>{arr.item1}</span> x <span>{200}</span>
             </div>
           </div>
           <div>
             <h4>Veg Cheese Burger</h4>
             <div>
-              <span>{10}</span> x <span>{500}</span>
+              <span>{arr.item2}</span> x <span>{500}</span>
             </div>
           </div>
           <div>
             <h4>Burger Fries</h4>
             <div>
-              <span>{10}</span> x <span>{1800}</span>
+              <span>{arr.item3}</span> x <span>{1800}</span>
             </div>
           </div>
           <div>
             <h4 style={{ fontWeight: 800 }}>Sub Total</h4>
-            <div style={{ fontWeight: 800 }}>₹{2132}</div>
+            <div style={{ fontWeight: 800 }}>
+              ₹
+              {arr.item1 * 200 +
+                arr.item2 * 500 +
+                arr.item3 * 1800}
+            </div>
           </div>
         </article>
       </main>
     </section>
   );
-};
+}
 export default OrderDetails;

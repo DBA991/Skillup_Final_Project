@@ -37,20 +37,85 @@ function App() {
     3:0
   });
   const [isAuth, setIsAuth] = React.useState(false)
+  const arr = [
+    {
+      address: "sjda 12-32ss dsad",
+      name: "Stuart",
+      phone: "2564644646",
+      oStatus: "Delivered",
+      pAt: "23-02-2022",
+      dAt: "25-02-2022",
+      pMeth: "COD",
+      id: "891080182",
+      payAt: "23-02-2022",
+      item1: 10,
+      item2: 20,
+      item3: 30,
+    },
+    {
+      address: "sjda 12-32ss dsad",
+      name: "Stuart",
+      phone: "2564644646",
+      oStatus: "Processing",
+      pAt: "2-03-2022",
+      dAt: "2-03-2022",
+      pMeth: "PayPal",
+      id: "564654654",
+      payAt: "2-03-2022",
+      item1: 10,
+      item2: 15,
+      item3: 30,
+    },
+    {
+      address: "sjda 12-32ss dsad",
+      name: "Stuart",
+      phone: "2564644646",
+      oStatus: "Processed",
+      pAt: "19-04-2022",
+      dAt: "19-04-2022",
+      pMeth: "Cash",
+      id: "754645645",
+      payAt: "20-04-2022",
+      item1: 10,
+      item2: 20,
+      item3: 22,
+    },
+    {
+      address: "sjda 12-32ss dsad",
+      name: "Stuart",
+      phone: "534645435343",
+      oStatus: "Sent",
+      pAt: "30-05-2022",
+      dAt: "31-05-2022",
+      pMeth: "CryptoCoins",
+      id: "644656469",
+      payAt: "30-05-2022",
+      item1: 30,
+      item2: 15,
+      item3: 30,
+    },
+  ];
+  const orderRoutes = arr.map((e, index) => (
+    <Route
+      key={index}
+      path={`/order/${e.id}`}
+      element={<OrderDetails arr={arr[index]} isAuth={isAuth} />}
+    />
+  ));
 
   return (
     <Router>
-      <Header isAuth={isAuth} setIsAuth={setIsAuth}/>
+      <Header isAuth={isAuth} setIsAuth={setIsAuth} />
       <Routes>
-        <Route path="/" element={<Home cartItems={cartItems} setCartItems={setCartItems}/>} />
+        <Route path="/" element={<Home cartItems={cartItems} setCartItems={setCartItems} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems}/>} />
-        <Route path="/shipping" element={<Shipping isAuth={isAuth}/>} />
-        <Route path="/login" element={<Login isAuth={isAuth} setIsAuth={setIsAuth}/>} />
-        <Route path="/me" element={<Profile isAuth={isAuth} setIsAuth={setIsAuth}/>} />
-        <Route path="/myorders" element={<MyOrders />} />
-        <Route path="/order/:id" element={<OrderDetails />} /> 
+        <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
+        <Route path="/shipping" element={<Shipping isAuth={isAuth} />} />
+        <Route path="/login" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
+        <Route path="/me" element={<Profile isAuth={isAuth} setIsAuth={setIsAuth} />} />
+        <Route path="/myorders" element={<MyOrders arr={arr} isAuth={isAuth} />} />
+        {orderRoutes}
         <Route path="/forgot" element={<Forgotpassword />} />
         <Route path="/terms" element={<Terms />} />
       </Routes>
