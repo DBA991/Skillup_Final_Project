@@ -77,7 +77,7 @@ function Contact () {
     }}
       >
         <h2>Come to Us</h2>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10841.654540971947!2d76.6263609033313!3d16.11193444550072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1700222657098!5m2!1sit!2sit" width="450" height="450" style={{border: 0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10841.654540971947!2d76.6263609033313!3d16.11193444550072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1700222657098!5m2!1sit!2sit" style={{border: 0, maxWidth: "450px", maxHeight: "450px"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </motion.div>
       <motion.div
         className="formBorder"
