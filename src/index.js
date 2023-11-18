@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React, { StrictMode } from "react";
+import ReactDOM, { createRoot } from "react-dom/client";
 import App from "./App";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";

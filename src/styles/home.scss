@@ -46,7 +46,9 @@
     z-index: -1;
   }
 }
-
+::-webkit-scrollbar, ::-webkit-scrollbar-button,::-webkit-scrollbar-thumb {
+  display: none
+}
 @media screen and (max-width: 600px) {
   .home {
     > div {

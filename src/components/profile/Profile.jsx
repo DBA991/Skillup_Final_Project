@@ -4,7 +4,7 @@ import me from "../../assets/skj.jpg";
 import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 
-const Profile = () => {
+function Profile () {
   const options = {
     initial: {
       y: "-100%",

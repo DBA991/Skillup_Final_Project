@@ -2,60 +2,76 @@ import React from "react";
 import { Link } from "react-router-dom";
 import burger1 from "../../assets/burger1.png";
 import burger2 from "../../assets/burger2.png";
-// import burger3 here
+import burger3 from "../../assets/burger3.png";
+import Popup from "reactjs-popup";
+import CartItem from "./CartItem";
 
-const CartItem = ({ value, title, img, increment, decrement }) => (
-  <div className="cartItem">
-    <div>
-      <h4>{title}</h4>
-      <img src={img} alt="Item" />
-    </div>
+function Cart ({ cartItems, setCartItems }) {
+  const cartItemsData = [
+    {
+      title: "Cheese Burger",
+      img: burger1,
+      nuItems: cartItems[1],
+      increment: () => increment(1),
+      decrement: () => decrement(1),
+    },
+    {
+      title: "Veg Cheese Burger",
+      img: burger2,
+      nuItems: cartItems[2],
+      increment: () => increment(2),
+      decrement: () => decrement(2),
+    },
+    {
+      title: "Cheese Burger w French Fries",
+      img: burger3,
+      nuItems: cartItems[3],
+      increment: () => increment(3),
+      decrement: () => decrement(3),
+    },
+  ];
 
-    <div>
-      <button onClick={decrement}>-</button>
-      <input type="number" readOnly value={value} />
-      <button onClick={increment}>+</button>
-    </div>
-  </div>
-);
+  const increment = (item) => {
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [item]: (prevItems[item] || 0) + 1,
+    }));
+  };
 
-const Cart = () => {
-  const increment = (item) => {};
-
-  const decrement = (item) => {};
-
+  const decrement = (item) => {
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [item]: prevItems[item] > 0 ? prevItems[item] - 1 : 0,
+    }));
+  };
   return (
     <section className="cart">
       <main>
-        <CartItem
-          title={"Cheese Burger"}
-          img={burger1}
-          value={0}
-          increment={() => increment(1)}
-
-        // Add the function for decrementing the order by 1 
-       
-        />
-        <CartItem
-          title={"Veg Cheese Burger"}
-          img={burger2}
-          value={0}
-          increment={() => increment(2)}
-        // Add the function for decrementing the order by 2
-       
-        />
-
-        {/* Fill up the code for Cheese Burger similarly */}
-       
+        {cartItemsData.map((item, index) => (
+          <CartItem
+            key={index}
+            title={item.title}
+            img={item.img}
+            nuItems={item.nuItems}
+            increment={item.increment}
+            decrement={item.decrement}
+          />
+        ))}
 
         <article>
           <div>
             <h4>Sub Total</h4>
-            <p>₹{2000}</p>
+            <p>
+              ₹{cartItems[1] * 200 + cartItems[2] * 500 + cartItems[3] * 1800}
+            </p>
           </div>
           <div>
             <h4>Tax</h4>
-            <p>₹{2000 * 0.18}</p>
+            <p>
+              ₹
+              {(cartItems[1] * 200 + cartItems[2] * 500 + cartItems[3] * 1800) *
+                0.18}
+            </p>
           </div>
           <div>
             <h4>Shipping Charges</h4>
@@ -63,9 +79,42 @@ const Cart = () => {
           </div>{" "}
           <div>
             <h4>Total</h4>
-            <p>₹{2000 + 2000 * 0.18 + 200}</p>
+            <p id="total">
+              ₹
+              {cartItems[1] * 200 +
+                cartItems[2] * 500 +
+                cartItems[3] * 1800 +
+                (cartItems[1] * 200 +
+                  cartItems[2] * 500 +
+                  cartItems[3] * 1800) *
+                  0.18 +
+                200}
+            </p>
           </div>
-          <Link to="/shipping">Checkout</Link>
+          <button>
+            {cartItems[1] * 200 +
+              cartItems[2] * 500 +
+              cartItems[3] * 1800 +
+              (cartItems[1] * 200 + cartItems[2] * 500 + cartItems[3] * 1800) *
+                0.18 ===
+            0 ? (
+              <Popup trigger={<span> Checkout </span>}>
+                <div
+                  style={{
+                    color: "red",
+                    backgroundColor: "#fff",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                  }}
+                >
+                  Your cart is empty!
+                </div>
+              </Popup>
+            ) : (
+              <Link to="/shipping">Checkout</Link>
+            )}
+          </button>
         </article>
       </main>
     </section>
