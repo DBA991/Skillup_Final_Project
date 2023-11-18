@@ -4,7 +4,7 @@ import me from "../../assets/skj.jpg";
 import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 
-function Profile () {
+function Profile ({isAuth, setIsAuth}) {
   const options = {
     initial: {
       y: "-100%",
@@ -48,6 +48,8 @@ function Profile () {
           transition={{
             delay: 0.3,
           }}
+          onClick={()=> setIsAuth(false)}
+
         >
           Logout
         </motion.button>
