@@ -4,7 +4,7 @@ import burger from "../../assets/burger2.png";
 import burger1 from "../../assets/burger3.png";
 import Popup from "reactjs-popup";
 function Contact() {
-  const [fields, setFields] = useState({name:"", email:"", message:""})
+  const [fields, setFields] = React.useState ({name:"", email:"", message:""})
   return (
 
     <>
