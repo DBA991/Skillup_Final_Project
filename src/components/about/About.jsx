@@ -1,4 +1,3 @@
-// Write all the code here
 import React from "react";
 import { Link } from "react-router-dom";
 import { RiFindReplaceLine } from "react-icons/ri";
@@ -11,7 +10,7 @@ function About () {
         <article>
           <h4>Burger Shop</h4>
           <p>
-            This is Burger Shop. The place for most tasty burgers on the enitre
+            This is Burger Shop. The place for most tasty burgers on the entire
             earth.
           </p>
           <p>

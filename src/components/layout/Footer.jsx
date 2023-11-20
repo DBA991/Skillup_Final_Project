@@ -22,6 +22,9 @@ function Footer () {
         <a href="https://instagram.com/xyz">
           <AiFillInstagram />
         </a>
+        <a href="https://github.com/DBA991">
+          <AiFillGithub />
+        </a>
       </aside>
     </footer>
   );
